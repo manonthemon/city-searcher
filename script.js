@@ -9,6 +9,8 @@ fetch(endpoint)
   .then((blob) => blob.json())
   .then((data) => cities.push(...data));
 
+
+  //Function to match user search with data in JSON file
 function findMatches(wordToMatch, cities) {
   return cities.filter((place) => {
     const regex = new RegExp(wordToMatch, "gi");
@@ -16,10 +18,12 @@ function findMatches(wordToMatch, cities) {
   });
 }
 
+//function to add commas in population numbers
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
+  //Funciton to display search results on page
 function displayMatches() {
 const matchArray = findMatches(this.value, cities);
 const html = matchArray.map(place => {
@@ -36,8 +40,10 @@ const html = matchArray.map(place => {
 suggestions.innerHTML = html;
 }
 
+
 const searchInput = document.querySelector(".search");
 const suggestions = document.querySelector(".suggestions");
 
+//event listeners to display results of uses input
 searchInput.addEventListener("change", displayMatches);
 searchInput.addEventListener("keyup", displayMatches);
